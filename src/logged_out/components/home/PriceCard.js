@@ -21,7 +21,7 @@ const styles = (theme) => ({
     paddingRight: theme.spacing(4),
     border: `3px solid ${theme.palette.primary.dark}`,
     borderRadius: theme.shape.borderRadius * 2,
-    backgroundColor: "#B50057",
+    backgroundColor: "#00E9F1",
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(2),
     },
@@ -36,13 +36,13 @@ const PriceCard = (props) => {
   return (
     <div
       className={highlighted ? classes.cardHightlighted : classes.card}
-      style={{ borderColor: highlighted ? "#B50057" : "#B50057" }}
+      style={{ borderColor: highlighted ? "#00E9F1" : "#00E9F1" }}
     >
       <Box mb={2}>
         <Typography
           variant={highlighted ? "h5" : "h6"}
           className={highlighted ? "text-white" : classes.title}
-          style={{ color: highlighted ? "#040a13" : "#B50057" }}
+          style={{ color: highlighted ? "#040a13" : "#00E9F1" }}
         >
           {title}
         </Typography>
@@ -51,19 +51,19 @@ const PriceCard = (props) => {
         <Typography
           variant={highlighted ? "h3" : "h4"}
           className={highlighted ? "text-white" : null}
-          style={{ color: highlighted ? "#040a13" : "#B50057" }}
+          style={{ color: highlighted ? "#040a13" : "#00E9F1" }}
         >
           {pricing}
         </Typography>
       </Box>
       {features.map((feature, index) => (
         <Box display="flex" alignItems="center" mb={1} key={index}>
-          <CheckIcon style={{ color: highlighted ? "#040a13" : "#B50057" }} />
+          <CheckIcon style={{ color: highlighted ? "#040a13" : "#00E9F1" }} />
           <Box ml={1}>
             <Typography
               className={highlighted ? "text-white" : null}
               variant={highlighted ? "h6" : "body1"}
-              style={{ color: highlighted ? "#040a13" : "#B50057" }}
+              style={{ color: highlighted ? "#040a13" : "#00E9F1" }}
             >
               {feature}
             </Typography>
