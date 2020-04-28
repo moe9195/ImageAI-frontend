@@ -134,7 +134,7 @@ const APISection = (props) => {
                         <Button
                           variant="contained"
                           color="secondary"
-                          style={{ background: "#B50057", color: "#0E141D" }}
+                          style={{ background: "#00E9F1", color: "#0E141D" }}
                           fullWidth
                           className={classes.extraLargeButton}
                           classes={{ label: classes.extraLargeButtonLabel }}

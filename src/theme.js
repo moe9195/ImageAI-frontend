@@ -9,6 +9,7 @@ const background = "#090f18";
 const warningLight = "rgba(253, 200, 69, .3)";
 const warningMain = "rgba(253, 200, 69, .5)";
 const warningDark = "rgba(253, 200, 69, .7)";
+const lightBlue = "#00E9F1";
 
 // border
 const borderWidth = 2;
@@ -31,6 +32,7 @@ const theme = createMuiTheme({
     common: {
       black,
       darkBlack,
+      lightBlue,
     },
     warning: {
       light: warningLight,

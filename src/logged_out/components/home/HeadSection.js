@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {
@@ -13,6 +13,7 @@ import {
   isWidthUp,
 } from "@material-ui/core";
 import WaveBorder from "../../../shared/components/WaveBorder";
+import UploadDialog from "./UploadDialog";
 
 const styles = (theme) => ({
   extraLargeButtonLabel: {
@@ -100,6 +101,16 @@ const styles = (theme) => ({
 });
 
 const HeadSection = (props) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const { classes, theme, width } = props;
   return (
     <Fragment>
@@ -142,6 +153,7 @@ const HeadSection = (props) => {
                           variant="contained"
                           color="secondary"
                           style={{ background: "#00E9F1", color: "#0E141D" }}
+                          onClick={handleOpen}
                           fullWidth
                           className={classes.extraLargeButton}
                           classes={{ label: classes.extraLargeButtonLabel }}
@@ -163,6 +175,7 @@ const HeadSection = (props) => {
             </Card>
           </Box>
         </div>
+        <UploadDialog open={open} handleClose={handleClose} />
       </div>
       <WaveBorder
         upperColor={theme.palette.secondary.main}

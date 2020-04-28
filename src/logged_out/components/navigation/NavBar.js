@@ -98,7 +98,7 @@ const NavBar = (props) => {
                 variant="h4"
                 className={classes.brandText}
                 display="inline"
-                style={{ color: "#b50057" }}
+                style={{ color: "#FADA5E" }}
               >
                 AI
               </Typography>
