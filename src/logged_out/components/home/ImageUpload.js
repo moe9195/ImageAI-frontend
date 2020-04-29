@@ -329,6 +329,17 @@ class ImageUploadCard extends React.Component {
   render() {
     const { classes, theme } = this.props;
 
+    /**
+     * The condition below can be made into an object:
+     * {
+     *  initial: this.renderInitialState,
+     * ...
+     * }
+     *
+     * then in the return below you'd just have:
+     *
+     * {theObjAbove[this.state.mainState]()}
+     */
     return (
       <React.Fragment>
         <div className={classes.root}>

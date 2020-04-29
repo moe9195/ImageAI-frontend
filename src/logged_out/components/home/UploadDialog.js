@@ -35,6 +35,17 @@ const UploadDialog = ({ open, handleClose, returnedImage, image }) => {
   };
 
   const classes = useStyles();
+
+  /**
+   * const image here, depending on the conditions
+   *
+   * then below in the return just add the src as
+   * the image const defined here
+   *
+   * so youre basically moving the conditions up
+   * here, and simplifying the conditions.
+   */
+
   return (
     <div>
       <Modal
@@ -59,6 +70,7 @@ const UploadDialog = ({ open, handleClose, returnedImage, image }) => {
               />
             </p>
 
+            {/**this can be simplified. See notes above the return. */}
             {returnedImage === null && image === null ? (
               <></>
             ) : returnedImage === null && image !== null ? (
