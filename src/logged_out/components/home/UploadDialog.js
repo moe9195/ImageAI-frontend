@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import VerticalStepper from "./VerticalStepper";
 
 const useStyles = makeStyles((theme) => ({
@@ -11,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    overflowY: "scroll",
+    position: "absolute",
+    top: "1rem",
   },
   paper: {
     backgroundColor: theme.palette.secondary.main,
@@ -21,8 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UploadDialog = ({ open, handleClose, returnedImage }) => {
+const UploadDialog = ({ open, handleClose, returnedImage, image }) => {
   const [method, setMethod] = React.useState("SuperResolution");
+
+  React.useEffect(() => {}, []);
+
   const handleMethodChange = (event) => {
     setMethod(event.target.value);
   };
@@ -51,11 +58,14 @@ const UploadDialog = ({ open, handleClose, returnedImage }) => {
                 handleMethodChange={handleMethodChange}
               />
             </p>
-            {returnedImage === null ? (
+
+            {returnedImage === null && image === null ? (
               <></>
+            ) : returnedImage === null && image !== null ? (
+              <img style={{ width: "480px" }} src={image} />
             ) : (
               <img
-                width="100%"
+                style={{ width: "480px" }}
                 src={"data:image/jpeg;base64, " + returnedImage}
               />
             )}
@@ -68,6 +78,7 @@ const UploadDialog = ({ open, handleClose, returnedImage }) => {
 
 const mapStateToProps = (state) => {
   return {
+    image: state.image,
     returnedImage: state.returnedImage,
   };
 };

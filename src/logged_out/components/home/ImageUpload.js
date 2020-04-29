@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import compose from "recompose/compose";
-import { postImage, setImage, setReturnedImage } from "../../../redux/actions";
+import { setImage, postImage } from "../../../redux/actions";
 
 //Card
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -22,6 +22,7 @@ import CollectionsIcon from "@material-ui/icons/Collections";
 
 // Search
 import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
 import InputBase from "@material-ui/core/InputBase";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
@@ -153,6 +154,9 @@ class ImageUploadCard extends React.Component {
                 <AddPhotoAlternateIcon />
               </Fab>
             </label>
+            <Fab className={classes.infoIcon} onClick={this.handleSearchClick}>
+              <SearchIcon />
+            </Fab>
             <Fab className={classes.infoIcon} onClick={this.handleGalleryClick}>
               <CollectionsIcon />
             </Fab>
@@ -163,7 +167,6 @@ class ImageUploadCard extends React.Component {
   }
 
   handleSearchURL = (event) => {
-    console.log();
     var file = event.target.files[0];
     var reader = new FileReader();
     var url = reader.readAsDataURL(file);
@@ -181,17 +184,14 @@ class ImageUploadCard extends React.Component {
     });
   };
 
-  handleImageSearch(url) {
-    var filename = url.substring(url.lastIndexOf("/") + 1);
-    console.log(filename);
+  handleImageSearch = (url) => {
+    // var filename = url.substring(url.lastIndexOf("/") + 1);
+    // console.log(filename);
     this.setState({
-      mainState: "uploaded",
-      imageUploaded: true,
       selectedFile: url,
-      fileReader: undefined,
-      filename: filename,
     });
-  }
+    this.props.setImage(url);
+  };
 
   handleSeachClose = (event) => {
     this.setState({
@@ -199,28 +199,57 @@ class ImageUploadCard extends React.Component {
     });
   };
 
+  handleSearchSubmit = () => {
+    this.setState({
+      mainState: "uploaded",
+      imageUploaded: true,
+    });
+    postImage(this.state.selectedFile, this.props.method);
+  };
+
   renderSearchState() {
     const { classes } = this.props;
 
     return (
-      <Paper className={classes.searchRoot} elevation={1}>
-        <InputBase className={classes.searchInput} placeholder="Image URL" />
-        <IconButton
-          className={classes.infoIcon}
-          aria-label="Search"
-          onClick={this.handleImageSearch}
+      <Paper
+        className={classes.searchRoot}
+        elevation={1}
+        style={{
+          backgroundColor: "#00E9F1",
+          borderRadius: "0.25rem",
+        }}
+      >
+        <form
+          onSubmit={this.handleSearchSubmit}
+          style={{
+            backgroundColor: "#00E9F1",
+            borderRadius: "0.25rem",
+          }}
         >
-          <SearchIcon />
-        </IconButton>
-        <Divider className={classes.searchDivider} />
-        <IconButton
-          color="primary"
-          className={classes.infoIcon}
-          aria-label="Close"
-          onClick={this.handleSeachClose}
-        >
-          <CloseIcon />
-        </IconButton>
+          <InputBase
+            value={this.state.selectedFile}
+            onChange={(e) => this.handleImageSearch(e.target.value)}
+            className={classes.searchInput}
+            placeholder="Image URL"
+            style={{ paddingLeft: "1rem", width: "60%" }}
+          />
+          <IconButton
+            className={classes.infoIcon}
+            aria-label="Search"
+            type="submit"
+          >
+            <SearchIcon />
+          </IconButton>
+          {/* <Divider className={classes.searchDivider} /> */}
+          <IconButton
+            color="primary"
+            className={classes.infoIcon}
+            aria-label="Close"
+            onClick={this.handleSeachClose}
+          >
+            <CloseIcon />
+          </IconButton>
+        </form>
       </Paper>
     );
   }
@@ -278,11 +307,10 @@ class ImageUploadCard extends React.Component {
 
   renderUploadedState() {
     const { classes, theme } = this.props;
-
     return (
       <React.Fragment>
         <CardActionArea onClick={this.imageResetHandler}>
-          <img width="100%" src={this.state.selectedFile} />
+          {/* <img width="100%" src={this.state.selectedFile} /> */}
         </CardActionArea>
       </React.Fragment>
     );

@@ -1,4 +1,7 @@
 import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
+import compose from "recompose/compose";
+import { setImage, setReturnedImage } from "../../../redux/actions";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {
@@ -102,13 +105,14 @@ const styles = (theme) => ({
 
 const HeadSection = (props) => {
   const [open, setOpen] = React.useState(false);
-
   const handleOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    props.setReturnedImage(null);
+    props.setImage(null);
   };
 
   const { classes, theme, width } = props;
@@ -193,6 +197,14 @@ HeadSection.propTypes = {
   theme: PropTypes.object,
 };
 
-export default withWidth()(
-  withStyles(styles, { withTheme: true })(HeadSection)
-);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setImage: (image) => dispatch(setImage(image)),
+    setReturnedImage: (image) => dispatch(setReturnedImage(image)),
+  };
+};
+
+export default compose(
+  withStyles(styles, { withTheme: true }),
+  connect(null, mapDispatchToProps)
+)(HeadSection);

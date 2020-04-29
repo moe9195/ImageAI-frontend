@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { postImage, setImage, setReturnedImage } from "../../../redux/actions";
+import { postImage, setImage } from "../../../redux/actions";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -52,7 +52,13 @@ const getStepContent = (step, method, handleMethodChange) => {
   }
 };
 
-const VerticalStepper = ({ method, handleMethodChange, image, postImage }) => {
+const VerticalStepper = ({
+  method,
+  handleMethodChange,
+  image,
+  postImage,
+  setImage,
+}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
@@ -64,11 +70,11 @@ const VerticalStepper = ({ method, handleMethodChange, image, postImage }) => {
   const handlePost = (image, method) => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     postImage(image, method);
-    console.log("WRONG");
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setImage(null);
   };
 
   const handleReset = () => {
@@ -138,7 +144,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     postImage: (imageUrl, method) => dispatch(postImage(imageUrl, method)),
     setImage: (image) => dispatch(setImage(image)),
-    setReturnedImage: (image) => dispatch(setReturnedImage(image)),
   };
 };
 const mapStateToProps = (state) => {
