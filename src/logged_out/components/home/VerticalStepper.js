@@ -39,14 +39,14 @@ const getSteps = () => {
   return ["Select algorithm", "Upload your image or use one of ours"];
 };
 
-const getStepContent = (step, method, handleMethodChange) => {
+const getStepContent = (step, method, handleMethodChange, style, setStyle) => {
   switch (step) {
     case 0:
       return (
         <Methods method={method} handleMethodChange={handleMethodChange} />
       );
     case 1:
-      return <ImageUpload method={method} />;
+      return <ImageUpload method={method} style={style} setStyle={setStyle} />;
     default:
       return "Unknown step";
   }
@@ -60,6 +60,7 @@ const VerticalStepper = ({
   setImage,
 }) => {
   const classes = useStyles();
+  const [style, setStyle] = React.useState("wave");
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
@@ -67,9 +68,9 @@ const VerticalStepper = ({
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
-  const handlePost = (image, method) => {
+  const handlePost = (image, method, style) => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    postImage(image, method);
+    postImage(image, method, style);
   };
 
   const handleBack = () => {
@@ -99,7 +100,13 @@ const VerticalStepper = ({
             </StepLabel>
             <StepContent>
               <Typography>
-                {getStepContent(index, method, handleMethodChange)}
+                {getStepContent(
+                  index,
+                  method,
+                  handleMethodChange,
+                  style,
+                  setStyle
+                )}
               </Typography>
               <div className={classes.actionsContainer}>
                 <div>
@@ -115,7 +122,7 @@ const VerticalStepper = ({
                     color="primary"
                     onClick={
                       activeStep === steps.length
-                        ? handlePost(image, method)
+                        ? handlePost(image, method, style)
                         : handleNext
                     }
                     className={classes.button}
@@ -142,7 +149,8 @@ const VerticalStepper = ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    postImage: (imageUrl, method) => dispatch(postImage(imageUrl, method)),
+    postImage: (imageUrl, method, style) =>
+      dispatch(postImage(imageUrl, method, style)),
     setImage: (image) => dispatch(setImage(image)),
   };
 };

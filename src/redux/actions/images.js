@@ -5,9 +5,13 @@ const instance = axios.create({
   baseURL: "http://127.0.0.1:8000",
 });
 
-export const postImage = (imageUrl, method) => async (dispatch) => {
+export const postImage = (imageUrl, method, style) => async (dispatch) => {
   try {
-    const obj = { img: imageUrl, method: method };
+    if (method === "DeepArt") {
+      var obj = { img: imageUrl, method: method, style: style };
+    } else {
+      var obj = { img: imageUrl, method: method };
+    }
     const res = await instance.post("/post/", obj);
     const returnedImage = res.data;
     dispatch({
