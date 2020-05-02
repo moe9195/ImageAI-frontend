@@ -81,15 +81,20 @@ const FAQ = () => {
           >
             <ArrowRightIcon />
 
-            <Typography>First Question</Typography>
+            <Typography>How does ImageAI work?</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails style={{ backgroundColor: "#0E141D" }}>
             <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
+              ImageAI uses cutting edge deep learning technologies to deliver
+              state of the art results. Our models are based on Convolutional
+              Neural Networks, which are able to extract useful features and
+              patterns from images, similar to how our brain functions. Using
+              Generative Adversarial Networks, we are able to reconstruct images
+              to perform complex tasks such as deblurring and colorization. Our
+              neural networks are trained on a large dataset of images, so it
+              learns typical features of physical objects. After the network
+              recognises these features, it is able to make accurate predictions
+              in just a few seconds.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -106,15 +111,15 @@ const FAQ = () => {
           >
             {" "}
             <ArrowRightIcon />
-            <Typography>Second Question</Typography>
+            <Typography>What is the maximum picture limit</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails style={{ backgroundColor: "#0E141D" }}>
             <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
+              For free users, we set the limit to 30 images per month. Moreover,
+              images are limited to 5 Megapixels and 5 Megabytes for every photo
+              uploaded. ImageAI uses state of the art algorithms which are
+              extremely resource hungry. These limits are increased for our paid
+              users.
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
@@ -131,15 +136,56 @@ const FAQ = () => {
           >
             {" "}
             <ArrowRightIcon />
-            <Typography>Third Question</Typography>
+            <Typography>What format are images returned in?</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails style={{ backgroundColor: "#0E141D" }}>
             <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
+              All images are returned in Base64 format. This allows for them to
+              be easily rendered onto websites using html.
+            </Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel
+          square
+          expanded={expanded === "panel4"}
+          onChange={handleChange("panel4")}
+          style={{ color: "#00E9F1" }}
+        >
+          <ExpansionPanelSummary
+            aria-controls="panel4d-content"
+            id="panel4d-header"
+            style={{ paddingLeft: "0rem" }}
+          >
+            {" "}
+            <ArrowRightIcon />
+            <Typography>Do you support bulk processing?</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails style={{ backgroundColor: "#0E141D" }}>
+            <Typography>
+              By using our API, you can process hundreds of images. Drop us a
+              message and we can guide you on how to set it up!
+            </Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel
+          square
+          expanded={expanded === "panel5"}
+          onChange={handleChange("panel5")}
+          style={{ color: "#00E9F1" }}
+        >
+          <ExpansionPanelSummary
+            aria-controls="panel5d-content"
+            id="panel5d-header"
+            style={{ paddingLeft: "0rem" }}
+          >
+            {" "}
+            <ArrowRightIcon />
+            <Typography>What if I have more questions?</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails style={{ backgroundColor: "#0E141D" }}>
+            <Typography>
+              No problem! Just send us a message using the message form at the
+              footer or drop us an email at welcome@imageai.io
             </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>

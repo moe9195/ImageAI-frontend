@@ -85,13 +85,14 @@ const Colorization = () => {
                 className={classes.lg}
                 style={{ margin: "2rem 2rem 2rem 2rem", color: "white" }}
               >
-                FIX BLURRY IMAGES
+                AUTOMATIC IMAGE CATEGORIZATION
               </Typography>
               <Typography
                 className={classes.sm}
                 style={{ margin: "2rem 2rem 2rem 2rem", color: "white" }}
               >
-                Remove blurring and restore images, automatically and quickly.
+                Automatically categorize your image content using our powerful
+                API.
               </Typography>
 
               <Paper className={classes.paper}>
@@ -102,15 +103,17 @@ const Colorization = () => {
                   State of the art deep learning algorithm
                 </Typography>
                 <Typography className={classes.sm}>
-                  Using Generative Adversarial Networks, you can now use our
-                  trained models to fix blurry images instantly. Our model has
-                  been trained on thousands of GoPRO images obtained from the
-                  massive DeepDeblur dataset.<br></br>
+                  Using EfficientNet, Google's state of the art image
+                  classification neural network, you can classify objects in
+                  images with up to 84.5% top-1 accuracy and 98.7% top-5
+                  accuracy. Trained on over 300 million images, this neural
+                  network is the best of its class.
+                  <br></br>
                   <br></br>
                   You can learn more about the algorithm{" "}
                   <a
                     target="_blank"
-                    href="https://arxiv.org/pdf/1711.07064.pdf"
+                    href="https://arxiv.org/pdf/1905.11946.pdf"
                   >
                     here
                   </a>
@@ -191,10 +194,11 @@ const Colorization = () => {
                   className={classes.md}
                   style={{ marginBottom: "1rem" }}
                 >
-                  For image restoration
+                  For Image Organization
                 </Typography>
                 <Typography className={classes.sm}>
-                  Instantly restore blurry images in just a few seconds.
+                  Organize your photos automatically based on their categories
+                  using our powerful API.
                 </Typography>
               </div>
             </Grid>
@@ -206,11 +210,11 @@ const Colorization = () => {
                   className={classes.md}
                   style={{ marginBottom: "1rem" }}
                 >
-                  For facial recognition
+                  For E-commerce
                 </Typography>
                 <Typography className={classes.sm}>
-                  Use our deblurring algorithm to pre-process your photos to
-                  make facial recognition easier.
+                  Automatically assign tags to your images. Save hundreds of
+                  hours of data entry time.
                 </Typography>
               </div>
             </Grid>
@@ -222,11 +226,11 @@ const Colorization = () => {
                   className={classes.md}
                   style={{ marginBottom: "1rem" }}
                 >
-                  For text recognition
+                  For Marketing
                 </Typography>
                 <Typography className={classes.sm}>
-                  Make it easier to scan and read photos of blurry text by using
-                  our algorithm.
+                  Extract useful information from visuals shared online to make
+                  better marketing decisions for your company.
                 </Typography>
               </div>
             </Grid>

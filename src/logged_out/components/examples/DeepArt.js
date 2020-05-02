@@ -106,7 +106,7 @@ const DeepArt = () => {
                   Using convolutional neural networks, you can now turn any of
                   your photos into artwork inspired by famous artists, in just a
                   few seconds! Choose from one of six styles of famous painters
-                  and automatically change your image to a piece of art.
+                  and automatically change your image into a piece of art.
                   <br></br>
                   <br></br>
                   You can learn more about the algorithm{" "}

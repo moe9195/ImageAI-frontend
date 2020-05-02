@@ -82,7 +82,7 @@ const infos = [
   },
   {
     icon: <MailIcon />,
-    description: "support@company.com",
+    description: "welcome@imageai.io",
   },
 ];
 
