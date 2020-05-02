@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Grid, Typography, isWidthUp, withWidth } from "@material-ui/core";
 import ColorLensIcon from "@material-ui/icons/ColorLens";
-import RestoreIcon from "@material-ui/icons/Restore";
+import CategoryIcon from "@material-ui/icons/Category";
 import ZoomOutMapIcon from "@material-ui/icons/ZoomOutMap";
 import RemoveRedEyeIcon from "@material-ui/icons/RemoveRedEye";
 import BlurOffIcon from "@material-ui/icons/BlurOff";
@@ -14,51 +15,61 @@ const iconSize = 30;
 
 const features = [
   {
-    color: "#00C853",
-    headline: "Image Upscaling",
-    text: "Increase your image resolution by up to x8 without loss in quality.",
-    icon: <ZoomOutMapIcon style={{ fontSize: iconSize }} />,
-    mdDelay: "0",
-    smDelay: "0",
-  },
-  {
-    color: "#6200EA",
-    headline: "Background removal",
-    text: "Automatically remove image background in a few seconds.",
-    icon: <RemoveRedEyeIcon style={{ fontSize: iconSize }} />,
-    mdDelay: "200",
-    smDelay: "200",
-  },
-  {
     color: "#0091EA",
+    link: "/colorize",
     headline: "Image Colorization",
-    text: "Add color to old family photos and historic images",
+    text:
+      "Add color to old family photos and historic images automatically and instantly",
     icon: <ColorLensIcon style={{ fontSize: iconSize }} />,
     mdDelay: "400",
     smDelay: "0",
   },
   {
     color: "#d50000",
+    link: "/deepart",
     headline: "Deep Art",
-    text: "Turn your photos into artwork using style transfer algorithms.",
+    text:
+      "Turn any of your photos into artwork using style transfer algorithms.",
     icon: <BrushIcon style={{ fontSize: iconSize }} />,
     mdDelay: "0",
     smDelay: "200",
   },
   {
+    color: "#00C853",
+    link: "/superresolution",
+    headline: "Image Upscaling",
+    text: "Increase your image resolution by up to x4 without loss in quality.",
+    icon: <ZoomOutMapIcon style={{ fontSize: iconSize }} />,
+    mdDelay: "0",
+    smDelay: "0",
+  },
+  {
     color: "#DD2C00",
-    headline: "Image Restoration",
-    text: "Restore old or corrupted images automatically and quickly.",
-    icon: <RestoreIcon style={{ fontSize: iconSize }} />,
+    link: "/classification",
+    headline: "Image Recognition",
+    text:
+      "Automatically classify the contents of your images using state of the art algorithms",
+    icon: <CategoryIcon style={{ fontSize: iconSize }} />,
     mdDelay: "200",
     smDelay: "0",
   },
   {
     color: "#64DD17",
+    link: "/deblur",
     headline: "Deblurring",
-    text: "Sharpen blurry images on the fly in a few seconds.",
+    text:
+      "Sharpen blurry and unclear images on the fly in a few seconds with deep learning.",
     icon: <BlurOffIcon style={{ fontSize: iconSize }} />,
     mdDelay: "400",
+    smDelay: "200",
+  },
+  {
+    color: "#6200EA",
+    link: "/removebg",
+    headline: "Background removal",
+    text: "Automatically remove image background in a few seconds.",
+    icon: <RemoveRedEyeIcon style={{ fontSize: iconSize }} />,
+    mdDelay: "200",
     smDelay: "200",
   },
 ];
@@ -99,6 +110,7 @@ const FeatureSection = (props) => {
                   headline={element.headline}
                   text={element.text}
                 />
+                <Link to={element.link}>Learn More</Link>
               </Grid>
             ))}
           </Grid>

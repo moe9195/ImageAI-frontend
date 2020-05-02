@@ -66,6 +66,13 @@ const imageGalleryDA = [
   "https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/images/da/switzerland.jpg",
 ];
 
+const imageGalleryDB = [
+  "https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/images/db/alley.png",
+  "https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/images/db/car.png",
+  "https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/images/db/crowd.png",
+  "https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/images/db/street.png",
+];
+
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.secondary.main,
@@ -194,14 +201,19 @@ class ImageUploadCard extends React.Component {
     return (
       <React.Fragment>
         <Grid className={classes.deepStyles}>
-          <Typography
-            style={{
-              color: "#00e9f1",
-              padding: "0.25rem 0rem 0.25rem 0rem",
-            }}
-          >
-            Choose Style: <br></br>
-          </Typography>
+          {method === "DeepArt" ? (
+            <Typography
+              style={{
+                color: "#00e9f1",
+                padding: "0.25rem 0rem 0.25rem 0rem",
+              }}
+            >
+              Choose Style: <br></br>
+            </Typography>
+          ) : (
+            <></>
+          )}
+
           {artStyles}
         </Grid>
         <CardContent>
@@ -339,6 +351,8 @@ class ImageUploadCard extends React.Component {
         ? imageGalleryBW
         : method === "DeepArt"
         ? imageGalleryDA
+        : method === "Deblur"
+        ? imageGalleryDB
         : imageGallerySR;
     const listItems = imageGallery.map((url) => (
       <div

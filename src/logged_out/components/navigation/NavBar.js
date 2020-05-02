@@ -51,7 +51,7 @@ const NavBar = (props) => {
   } = props;
   const menuItems = [
     {
-      // link: "/",
+      link: "/api",
       name: "API",
       icon: <HomeIcon className="text-white" />,
     },
@@ -61,18 +61,18 @@ const NavBar = (props) => {
       icon: <BookIcon className="text-white" />,
     },
     {
+      link: "/technology",
       name: "Technology",
-      // onClick: openRegisterDialog,
       icon: <HowToRegIcon className="text-white" />,
     },
     {
       name: "Login",
-      // onClick: openLoginDialog,
+      onClick: openLoginDialog,
       icon: <LockOpenIcon className="text-white" />,
     },
     {
       name: "Signup",
-      //  onClick: openRegisterDialog,
+      onClick: openRegisterDialog,
       icon: <HowToRegIcon className="text-white" />,
     },
   ];

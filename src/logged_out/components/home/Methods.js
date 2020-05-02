@@ -78,11 +78,6 @@ const Methods = ({ method, handleMethodChange }) => {
         onChange={handleMethodChange}
       >
         <FormControlLabel
-          value="SuperResolution"
-          label="Image Upscaling"
-          control={<StyledRadio />}
-        />
-        <FormControlLabel
           value="Colorize"
           label="Colorization"
           control={<StyledRadio />}
@@ -93,18 +88,23 @@ const Methods = ({ method, handleMethodChange }) => {
           control={<StyledRadio />}
         />
         <FormControlLabel
-          value="RemoveBG"
-          label="Background Removal"
-          control={<StyledRadio />}
-        />
-        <FormControlLabel
-          value="RestoreImage"
-          label="Image Restoration"
-          control={<StyledRadio />}
-        />
-        <FormControlLabel
           value="Deblur"
           label="Deblurring"
+          control={<StyledRadio />}
+        />
+        <FormControlLabel
+          value="SuperResolution"
+          label="Image Upscaling"
+          control={<StyledRadio />}
+        />
+        <FormControlLabel
+          value="Classify"
+          label="Image Classification"
+          control={<StyledRadio />}
+        />
+        <FormControlLabel
+          value="RemoveBG"
+          label="Background Removal"
           control={<StyledRadio />}
         />
       </RadioGroup>

@@ -15,7 +15,7 @@ AOS.init({ once: true });
 
 const styles = (theme) => ({
   wrapper: {
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: "#0E141D",
     overflowX: "hidden",
   },
 });
@@ -83,7 +83,6 @@ class Main extends PureComponent {
     const {
       selectedTab,
       mobileDrawerOpen,
-
       dialogOpen,
       cookieRulesDialogOpen,
     } = this.state;
