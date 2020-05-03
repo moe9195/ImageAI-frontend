@@ -201,6 +201,7 @@ class ImageUploadCard extends React.Component {
     return (
       <React.Fragment>
         <Grid className={classes.deepStyles}>
+          {/** use the CONDITION && SOMETHING syntax */}
           {method === "DeepArt" ? (
             <Typography
               style={{
