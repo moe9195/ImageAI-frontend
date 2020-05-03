@@ -38,6 +38,7 @@ const UploadDialog = ({ open, handleClose, returnedImage, image }) => {
 
   let show = "";
   if (returnedImage === null && image === null) {
+    // you don't need this condition
     show = <></>;
   } else if (returnedImage === null && image !== null) {
     show = <img style={{ width: "430px" }} src={image} />;
