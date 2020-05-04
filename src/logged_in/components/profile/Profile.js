@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 const Profile = ({ user }) => {
-  if (user === null) {
+  if (!user) {
     return <Redirect to="/" />;
   }
   return <h1 style={{ color: "white" }}>THIS HAS NOTHING YET</h1>;
