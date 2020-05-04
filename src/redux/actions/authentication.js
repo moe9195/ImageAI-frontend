@@ -22,9 +22,11 @@ export const setCurrentUser = (token) => async (dispatch) => {
   let profile = null;
   if (token) {
     const decodedToken = decode(token);
-    const id = decodedToken.user_id;
-    const res = await instance.get(`/user/${id}/detail/`);
-    const res2 = await instance.get(`/profile/${id}/detail/`);
+    const user_id = decodedToken.user_id;
+    console.log("HERERERERE");
+    console.log(user_id);
+    const res = await instance.get(`/user/${user_id}/detail/`);
+    const res2 = await instance.get(`/profile/${user_id}/detail/`);
     profile = res2.data;
     user = res.data;
   }
@@ -41,7 +43,6 @@ export const setCurrentUser = (token) => async (dispatch) => {
 export const login = (userData, history) => async (dispatch) => {
   try {
     const res = await instance.post("/login/", userData);
-
     const token = res.data.access;
     dispatch(setCurrentUser(token));
   } catch (error) {

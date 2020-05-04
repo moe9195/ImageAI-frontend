@@ -3,3 +3,4 @@ export const SET_IMAGE = "SET_IMAGE";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const SET_ERRORS = "SET_ERRORS";
 export const SET_CURRENT_PROFILE = "SET_CURRENT_PROFILE";
+export const SET_RETURNED_IMAGE = "SET_RETURNED_IMAGE";

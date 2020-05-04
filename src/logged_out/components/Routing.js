@@ -6,6 +6,7 @@ import Home from "./home/Home";
 import Documentation from "./api/Documentation";
 import Technology from "./technology/Technology";
 
+import Profile from "../../logged_in/components/profile/Profile";
 import BackGroundRemoval from "./examples/BackGroundRemoval";
 import Classification from "./examples/Classification";
 import Colorization from "./examples/Colorization";
@@ -24,6 +25,7 @@ const Routing = (props) => {
       <PropsRoute path="/deepart" component={DeepArt} />)
       <PropsRoute path="/superresolution" component={SuperResolution} />)
       <PropsRoute path="/api" component={Documentation} />)
+      <PropsRoute path="/profile" component={Profile} />)
       <PropsRoute path="/technology" component={Technology} />)
       <PropsRoute path="/" component={Home} selectHome={selectHome} />)
     </Switch>

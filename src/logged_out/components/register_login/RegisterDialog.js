@@ -1,261 +1,159 @@
-import React, { PureComponent, Fragment } from "react";
-import PropTypes from "prop-types";
-import {
-  FormHelperText,
-  TextField,
-  Button,
-  Checkbox,
-  Typography,
-  FormControlLabel,
-  withStyles
-} from "@material-ui/core";
-import FormDialog from "../../../shared/components/FormDialog";
-import HighlightedInformation from "../../../shared/components/HighlightedInformation";
-import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
-import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { signup } from "../../../redux/actions";
 
-const styles = theme => ({
-  link: {
-    transition: theme.transitions.create(["background-color"], {
-      duration: theme.transitions.duration.complex,
-      easing: theme.transitions.easing.easeInOut
-    }),
-    cursor: "pointer",
-    color: theme.palette.primary.main,
-    "&:enabled:hover": {
-      color: theme.palette.primary.dark
-    },
-    "&:enabled:focus": {
-      color: theme.palette.primary.dark
-    }
-  }
-});
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Grid from "@material-ui/core/Grid";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import Button from "@material-ui/core/Button";
 
-class RegisterDialog extends PureComponent {
-  state = {
-    loading: false,
-    termsOfServiceError: false,
-    passwordIsVisible: false
-  };
+const Signup = ({ signup, history, user, errors }) => {
+  const [values, setValues] = useState({
+    username: "",
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    showPassword: false,
+  });
 
-  register = () => {
-    const { setStatus } = this.props;
-    if (!this.registerTermsCheckbox.checked) {
-      this.setState({ termsOfServiceError: true });
-      return;
-    }
-    if (this.registerPassword.value !== this.registerPasswordRepeat.value) {
-      setStatus("passwordsDontMatch");
-      return;
-    }
-    setStatus(null);
-    this.setState({ loading: true });
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 1500);
-  };
-
-  onVisibilityChange = isVisible => {
-    this.setState({ passwordIsVisible: isVisible });
-  };
-
-  render() {
-    const {
-      theme,
-      onClose,
-      openTermsDialog,
-      setStatus,
-      status,
-      classes
-    } = this.props;
-    const { loading, termsOfServiceError, passwordIsVisible } = this.state;
-    return (
-      <FormDialog
-        loading={loading}
-        onClose={onClose}
-        open
-        headline="Register"
-        onFormSubmit={e => {
-          e.preventDefault();
-          this.register();
-        }}
-        hideBackdrop
-        hasCloseIcon
-        content={
-          <Fragment>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              error={status === "invalidEmail"}
-              label="Email Address"
-              inputRef={node => {
-                this.registerEmail = node;
-              }}
-              autoFocus
-              autoComplete="off"
-              type="email"
-              onChange={() => {
-                if (status === "invalidEmail") {
-                  setStatus(null);
-                }
-              }}
-              FormHelperTextProps={{ error: true }}
-            />
-            <VisibilityPasswordTextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              error={
-                status === "passwordTooShort" || status === "passwordsDontMatch"
-              }
-              label="Password"
-              inputRef={node => {
-                this.registerPassword = node;
-              }}
-              autoComplete="off"
-              onChange={() => {
-                if (
-                  status === "passwordTooShort" ||
-                  status === "passwordsDontMatch"
-                ) {
-                  setStatus(null);
-                }
-              }}
-              helperText={(() => {
-                if (status === "passwordTooShort") {
-                  return "Create a password at least 6 characters long.";
-                }
-                if (status === "passwordsDontMatch") {
-                  return "Your passwords dont match.";
-                }
-                return null;
-              })()}
-              FormHelperTextProps={{ error: true }}
-              isVisible={passwordIsVisible}
-              onVisibilityChange={this.onVisibilityChange}
-            />
-            <VisibilityPasswordTextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              error={
-                status === "passwordTooShort" || status === "passwordsDontMatch"
-              }
-              label="Repeat Password"
-              inputRef={node => {
-                this.registerPasswordRepeat = node;
-              }}
-              autoComplete="off"
-              onChange={() => {
-                if (
-                  status === "passwordTooShort" ||
-                  status === "passwordsDontMatch"
-                ) {
-                  setStatus(null);
-                }
-              }}
-              helperText={(() => {
-                if (status === "passwordTooShort") {
-                  return "Create a password at least 6 characters long.";
-                }
-                if (status === "passwordsDontMatch") {
-                  return "Your passwords dont match.";
-                }
-              })()}
-              FormHelperTextProps={{ error: true }}
-              isVisible={passwordIsVisible}
-              onVisibilityChange={this.onVisibilityChange}
-            />
-            <FormControlLabel
-              style={{ marginRight: 0 }}
-              control={
-                <Checkbox
-                  color="primary"
-                  inputRef={node => {
-                    this.registerTermsCheckbox = node;
-                  }}
-                  onChange={() => {
-                    this.setState({ termsOfServiceError: false });
-                  }}
-                />
-              }
-              label={
-                <Typography variant="body1">
-                  I agree to the
-                  <span
-                    className={classes.link}
-                    onClick={loading ? null : openTermsDialog}
-                    tabIndex={0}
-                    role="button"
-                    onKeyDown={event => {
-                      // For screenreaders listen to space and enter events
-                      if (
-                        (!loading && event.keyCode === 13) ||
-                        event.keyCode === 32
-                      ) {
-                        openTermsDialog();
-                      }
-                    }}
-                  >
-                    {" "}
-                    terms of service
-                  </span>
-                </Typography>
-              }
-            />
-            {termsOfServiceError && (
-              <FormHelperText
-                error
-                style={{
-                  display: "block",
-                  marginTop: theme.spacing(-1)
-                }}
-              >
-                In order to create an account, you have to accept our terms of
-                service.
-              </FormHelperText>
-            )}
-            {status === "accountCreated" ? (
-              <HighlightedInformation>
-                We have created your account. Please click on the link in the
-                email we have sent to you before logging in.
-              </HighlightedInformation>
-            ) : (
-              <HighlightedInformation>
-                Registration is disabled until we go live.
-              </HighlightedInformation>
-            )}
-          </Fragment>
-        }
-        actions={
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            size="large"
-            color="secondary"
-            disabled={loading}
-          >
-            Register
-            {loading && <ButtonCircularProgress />}
-          </Button>
-        }
-      />
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    signup(
+      {
+        username: values.username,
+        password: values.password,
+        first_name: values.firstName,
+        last_name: values.lastName,
+        email: values.email,
+      },
+      history
     );
-  }
-}
+  };
 
-RegisterDialog.propTypes = {
-  theme: PropTypes.object.isRequired,
-  onClose: PropTypes.func.isRequired,
-  openTermsDialog: PropTypes.func.isRequired,
-  status: PropTypes.string,
-  setStatus: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  return (
+    <div>
+      {user ? (
+        <Redirect to="/profile" />
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={3}>
+            <Grid item xs={6} style={{ paddingTop: "2rem" }}>
+              <FormControl>
+                <TextField
+                  label="First Name"
+                  id="first-name"
+                  value={values.firstName}
+                  onChange={handleChange("firstName")}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={6} style={{ paddingTop: "2rem" }}>
+              <FormControl>
+                <TextField
+                  label="Last Name"
+                  id="last-name"
+                  value={values.lastName}
+                  onChange={handleChange("lastName")}
+                />
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12} style={{ paddingTop: "2rem" }}>
+              <FormControl fullWidth>
+                <TextField
+                  label="Email"
+                  id="email"
+                  value={values.email}
+                  onChange={handleChange("email")}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} style={{ paddingTop: "2rem" }}>
+              <FormControl fullWidth>
+                <TextField
+                  label="Username"
+                  id="username"
+                  value={values.username}
+                  onChange={handleChange("username")}
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} style={{ paddingTop: "2rem" }}>
+              <FormControl fullWidth>
+                <InputLabel htmlFor="standard-adornment-password">
+                  Password
+                </InputLabel>
+                <Input
+                  id="standard-adornment-password"
+                  type={values.showPassword ? "text" : "password"}
+                  value={values.password}
+                  onChange={handleChange("password")}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {values.showPassword ? (
+                          <Visibility />
+                        ) : (
+                          <VisibilityOff />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} style={{ padding: "2.5rem 0rem 2.5rem 0rem" }}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                style={{ borderRadius: "20rem", width: "50%" }}
+                // onClick={(e) => handleSubmit(e)}
+              >
+                Signup
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      )}
+    </div>
+  );
 };
 
-export default withStyles(styles, { withTheme: true })(RegisterDialog);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signup: (userData, history) => dispatch(signup(userData, history)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

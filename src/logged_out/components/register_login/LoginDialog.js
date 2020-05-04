@@ -1,228 +1,109 @@
-import React, { PureComponent, Fragment } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { withRouter } from "react-router-dom";
-import {
-  TextField,
-  Button,
-  Checkbox,
-  Typography,
-  FormControlLabel,
-  withStyles,
-} from "@material-ui/core";
-import FormDialog from "../../../shared/components/FormDialog";
-import HighlightedInformation from "../../../shared/components/HighlightedInformation";
-import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
-import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { login } from "../../../redux/actions";
 
-const styles = (theme) => ({
-  forgotPassword: {
-    marginTop: theme.spacing(2),
-    color: theme.palette.primary.main,
-    cursor: "pointer",
-    "&:enabled:hover": {
-      color: theme.palette.primary.dark,
-    },
-    "&:enabled:focus": {
-      color: theme.palette.primary.dark,
-    },
-  },
-  disabledText: {
-    cursor: "auto",
-    color: theme.palette.text.disabled,
-  },
-  formControlLabel: {
-    marginRight: 0,
-  },
-});
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Grid from "@material-ui/core/Grid";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import Button from "@material-ui/core/Button";
 
-class LoginDialog extends PureComponent {
-  state = { loading: false, passwordIsVisible: false };
+const LoginDialog = ({ login, history, user }) => {
+  const [values, setValues] = useState({
+    username: "",
+    password: "",
+    showPassword: false,
+  });
 
-  onVisibilityChange = (isVisible) => {
-    this.setState({ passwordIsVisible: isVisible });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login({ username: values.username, password: values.password }, history);
   };
 
-  login = () => {
-    const { setStatus, history } = this.props;
-    this.setState({
-      loading: true,
-    });
-    setStatus(null);
-    if (this.loginEmail.value !== "test@web.com") {
-      setTimeout(() => {
-        setStatus("invalidEmail");
-        this.setState({
-          loading: false,
-        });
-      }, 1500);
-    } else if (this.loginPassword.value !== "test") {
-      setTimeout(() => {
-        setStatus("invalidPassword");
-        this.setState({
-          loading: false,
-        });
-      }, 1500);
-    } else {
-      setTimeout(() => {
-        history.push("/api");
-      }, 150);
-    }
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
   };
 
-  render() {
-    const {
-      classes,
-      onClose,
-      openChangePasswordDialog,
-      status,
-      setStatus,
-    } = this.props;
-    const { loading, passwordIsVisible } = this.state;
-    return (
-      <Fragment>
-        <FormDialog
-          open
-          onClose={onClose}
-          loading={loading}
-          onFormSubmit={(e) => {
-            e.preventDefault();
-            this.login();
-          }}
-          hideBackdrop
-          headline="Login"
-          content={
-            <Fragment>
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  return (
+    <div>
+      {user ? (
+        <Redirect to="/profile" />
+      ) : (
+        <Grid container spacing={3}>
+          <Grid item xs={12} style={{ paddingTop: "2rem" }}>
+            <FormControl fullWidth>
               <TextField
-                variant="outlined"
-                margin="normal"
-                error={status === "invalidEmail"}
-                required
-                fullWidth
-                label="Email Address"
-                inputRef={(node) => {
-                  this.loginEmail = node;
-                }}
-                autoFocus
-                autoComplete="off"
-                type="email"
-                onChange={() => {
-                  if (status === "invalidEmail") {
-                    setStatus(null);
-                  }
-                }}
-                helperText={
-                  status === "invalidEmail" &&
-                  "This email address isn't associated with an account."
-                }
-                FormHelperTextProps={{ error: true }}
+                label="Username"
+                id="username"
+                value={values.username}
+                onChange={handleChange("username")}
               />
-              <VisibilityPasswordTextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                error={status === "invalidPassword"}
-                label="Password"
-                inputRef={(node) => {
-                  this.loginPassword = node;
-                }}
-                autoComplete="off"
-                onChange={() => {
-                  if (status === "invalidPassword") {
-                    setStatus(null);
-                  }
-                }}
-                helperText={
-                  status === "invalidPassword" ? (
-                    <span>
-                      Incorrect password. Try again, or click on{" "}
-                      <b>&quot;Forgot Password?&quot;</b> to reset it.
-                    </span>
-                  ) : (
-                    ""
-                  )
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} style={{ paddingTop: "2rem" }}>
+            <FormControl fullWidth>
+              <InputLabel htmlFor="standard-adornment-password">
+                Password
+              </InputLabel>
+              <Input
+                id="standard-adornment-password"
+                type={values.showPassword ? "text" : "password"}
+                value={values.password}
+                onChange={handleChange("password")}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
                 }
-                FormHelperTextProps={{ error: true }}
-                onVisibilityChange={this.onVisibilityChange}
-                isVisible={passwordIsVisible}
               />
-              <FormControlLabel
-                className={classes.formControlLabel}
-                control={
-                  <Checkbox
-                    inputRef={(node) => {
-                      this.loginRememberMe = node;
-                    }}
-                    color="primary"
-                  />
-                }
-                label={<Typography variant="body1">Remember me</Typography>}
-              />
-              {status === "verificationEmailSend" ? (
-                <HighlightedInformation>
-                  We have send instructions on how to reset your password to
-                  your email address
-                </HighlightedInformation>
-              ) : (
-                <HighlightedInformation>
-                  Email is: <b>test@web.com</b>
-                  <br />
-                  Password is: <b>test</b>
-                </HighlightedInformation>
-              )}
-            </Fragment>
-          }
-          actions={
-            <Fragment>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="secondary"
-                disabled={loading}
-                size="large"
-              >
-                Login
-                {loading && <ButtonCircularProgress />}
-              </Button>
-              <Typography
-                align="center"
-                className={classNames(
-                  classes.forgotPassword,
-                  loading ? classes.disabledText : null
-                )}
-                color="primary"
-                onClick={loading ? null : openChangePasswordDialog}
-                tabIndex={0}
-                role="button"
-                onKeyDown={(event) => {
-                  // For screenreaders listen to space and enter events
-                  if (
-                    (!loading && event.keyCode === 13) ||
-                    event.keyCode === 32
-                  ) {
-                    openChangePasswordDialog();
-                  }
-                }}
-              >
-                Forgot Password?
-              </Typography>
-            </Fragment>
-          }
-        />
-      </Fragment>
-    );
-  }
-}
-
-LoginDialog.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onClose: PropTypes.func.isRequired,
-  setStatus: PropTypes.func.isRequired,
-  openChangePasswordDialog: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
-  status: PropTypes.string,
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} style={{ padding: "2.5rem 0rem 2.5rem 0rem" }}>
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ borderRadius: "20rem", width: "50%" }}
+              onClick={(e) => handleSubmit(e)}
+            >
+              Login
+            </Button>
+          </Grid>
+        </Grid>
+      )}
+    </div>
+  );
 };
 
-export default withRouter(withStyles(styles)(LoginDialog));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (userData, history) => dispatch(login(userData, history)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginDialog);
