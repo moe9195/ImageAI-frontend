@@ -83,6 +83,7 @@ const NavBar = (props) => {
     setShowSignup(false);
   }, [user]);
 
+  // Consider moving menu items to its own component.
   const auth =
     user === null
       ? [
