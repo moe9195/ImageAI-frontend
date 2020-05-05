@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import LoginDialog from "../register_login/LoginDialog";
 import RegisterDialog from "../register_login/RegisterDialog";
 import { Link } from "react-router-dom";
-import { logout } from "../../../redux/actions";
-// import { Modal } from "react-bootstrap";
+import { logout, resetErrors } from "../../../redux/actions";
+import Alert from "@material-ui/lab/Alert";
 import {
   Paper,
   AppBar,
@@ -29,6 +29,12 @@ import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 
 const styles = (theme) => ({
+  root: {
+    width: "100%",
+    "& > * + *": {
+      marginTop: theme.spacing(2),
+    },
+  },
   appBar: {
     boxShadow: theme.shadows[6],
     backgroundColor: theme.palette.common.white,
@@ -73,10 +79,16 @@ const NavBar = (props) => {
     selectedTab,
     user,
     logout,
+    errors,
+    resetErrors,
   } = props;
 
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
+
+  useEffect(() => {
+    resetErrors();
+  }, [showLogin, showSignup, resetErrors]);
 
   useEffect(() => {
     setShowLogin(false);
@@ -238,6 +250,16 @@ const NavBar = (props) => {
                   textAlign: "center",
                 }}
               >
+                {" "}
+                {!!errors.errors.length && (
+                  <div>
+                    {errors.errors.map((error) => (
+                      <Alert variant="filled" severity="error">
+                        {error}
+                      </Alert>
+                    ))}
+                  </div>
+                )}
                 <LoginDialog />
               </Paper>
             </p>
@@ -280,6 +302,20 @@ const NavBar = (props) => {
                   textAlign: "center",
                 }}
               >
+                {" "}
+                {!!errors.errors.length && (
+                  <div>
+                    {errors.errors.map((error) => (
+                      <Alert
+                        variant="filled"
+                        severity="error"
+                        style={{ marginBottom: ".5rem" }}
+                      >
+                        {error}
+                      </Alert>
+                    ))}
+                  </div>
+                )}
                 <RegisterDialog />
               </Paper>
             </p>
@@ -311,12 +347,14 @@ NavBar.propTypes = {
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout()),
+    resetErrors: () => dispatch(resetErrors()),
   };
 };
 
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    errors: state.errors,
   };
 };
 
