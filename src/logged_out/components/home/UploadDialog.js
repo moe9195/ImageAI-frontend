@@ -42,7 +42,7 @@ const UploadDialog = ({ open, handleClose, returnedImage, image }) => {
   } else if (returnedImage === null && image !== null) {
     show = <img style={{ width: "430px" }} src={image} />;
   } else {
-    if (method === "Classify") {
+    if (method === "classify") {
       show = (
         <div class="container overlay-container">
           <img style={{ width: "430px" }} src={image} />

@@ -166,7 +166,7 @@ class ImageUploadCard extends React.Component {
     const { value } = this.state;
 
     let artStyles = "";
-    if (method === "DeepArt") {
+    if (method === "deep-art") {
       const capitalizeFirstLetter = (string) =>
         string.charAt(0).toUpperCase() + string.slice(1);
 
@@ -201,7 +201,7 @@ class ImageUploadCard extends React.Component {
     return (
       <React.Fragment>
         <Grid className={classes.deepStyles}>
-          {method === "DeepArt" ? (
+          {method === "deep-art" ? (
             <Typography
               style={{
                 color: "#00e9f1",
@@ -345,13 +345,13 @@ class ImageUploadCard extends React.Component {
     const { classes } = this.props;
     const method = this.props.method;
     const imageGallery =
-      method === "SuperResolution"
+      method === "super-resolution"
         ? imageGallerySR
-        : method === "Colorize"
+        : method === "colorize"
         ? imageGalleryBW
-        : method === "DeepArt"
+        : method === "deep-art"
         ? imageGalleryDA
-        : method === "Deblur"
+        : method === "deblur"
         ? imageGalleryDB
         : imageGallerySR;
     const listItems = imageGallery.map((url) => (

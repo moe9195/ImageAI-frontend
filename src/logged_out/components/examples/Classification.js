@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import ReactCompareImage from "react-compare-image";
+import React from "react";
 import { Classification } from "./ImageData";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";

@@ -1,6 +1,7 @@
 import React from "react";
 import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
+import Request from "./Request";
 
 const Documentation = () => {
   return (
@@ -9,9 +10,10 @@ const Documentation = () => {
       style={{
         marginBottom: "5rem",
         backgroundColor: "#0E141D",
+        height: "1440px",
       }}
     >
-      <SwaggerUI url="https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/docs.yaml" />
+      <Request />
     </div>
   );
 };

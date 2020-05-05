@@ -1,16 +1,49 @@
-import React from "react";
-import Paper from "@material-ui/core/Paper";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import { Tabs, Tab, Box, Typography } from "@material-ui/core";
+import Key from "./Key";
+import Payment from "./Payment";
+import Settings from "./Settings";
+import Credits from "./Credits";
+
+import {
+  Tabs,
+  Tab,
+  Box,
+  Typography,
+  Grid,
+  Paper,
+  Button,
+  Popover,
+} from "@material-ui/core";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import SettingsIcon from "@material-ui/icons/Settings";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
+import PaymentIcon from "@material-ui/icons/Payment";
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    maxWidth: 500,
+    maxWidth: 768,
+    color: "rgb(4, 10, 19)",
+    borderRadius: "0rem 0rem 0.5rem 0.5rem",
+  },
+  creditsCounter: {
+    fontSize: "1.5rem",
+    display: "inline",
+    fontWeight: "500",
+  },
+  creditsTitle: {
+    fontSize: "1rem",
+    fontWeight: "500",
+  },
+  popover: {
+    pointerEvents: "none",
+  },
+  paper: {
+    padding: "0.5rem",
+    backgroundColor: "rgb(4, 10, 19)",
+    color: "#00CCD3",
   },
 });
 
@@ -26,7 +59,12 @@ const TabPanel = (props) => {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <Box
+          style={{
+            padding: "4rem 0rem 4rem 0rem",
+            borderRadius: "0.5rem 0.5rem 0rem 0rem",
+          }}
+        >
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -46,7 +84,7 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-export default function IconLabelTabs() {
+const NavTabs = ({ user, profile }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -63,25 +101,48 @@ export default function IconLabelTabs() {
       <Tabs
         value={value}
         onChange={handleChange}
+        centered
         variant="fullWidth"
         indicatorColor="secondary"
         textColor="secondary"
         aria-label="icon label tabs example"
         style={{ backgroundColor: "#00CCD3" }}
       >
-        <Tab icon={<MonetizationOnIcon />} label="CREDITS" />
-        <Tab icon={<VpnKeyIcon />} label="API KEY" />
-        <Tab icon={<SettingsIcon />} label="ACCOUNT SETTINGS" />
+        <Tab
+          icon={<MonetizationOnIcon />}
+          label="Credits & Plan"
+          style={{ padding: "0px 24px 0px 24px" }}
+        />
+        <Tab
+          icon={<PaymentIcon />}
+          label="Payment & Billing"
+          style={{ padding: "0px 24px 0px 24px" }}
+        />
+        <Tab
+          icon={<VpnKeyIcon />}
+          label="API Key"
+          style={{ padding: "0px 24px 0px 24px" }}
+        />
+        <Tab
+          icon={<SettingsIcon />}
+          label="ACCOUNT SETTINGS"
+          style={{ padding: "0px 24px 0px 24px" }}
+        />
       </Tabs>
       <TabPanel value={value} index={0}>
-        PRETEND IT EXISTS
+        <Credits profile={profile} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        PRETEND IT EXISTS
+        COMING SOON!
       </TabPanel>
       <TabPanel value={value} index={2}>
-        PRETEND IT EXISTS
+        <Key profile={profile} />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        COMING SOON!
       </TabPanel>
     </Paper>
   );
-}
+};
+
+export default NavTabs;

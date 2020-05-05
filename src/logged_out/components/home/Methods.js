@@ -78,32 +78,32 @@ const Methods = ({ method, handleMethodChange }) => {
         onChange={handleMethodChange}
       >
         <FormControlLabel
-          value="Colorize"
+          value="colorize"
           label="Colorization"
           control={<StyledRadio />}
         />
         <FormControlLabel
-          value="DeepArt"
+          value="deep-art"
           label="Deep Art"
           control={<StyledRadio />}
         />
         <FormControlLabel
-          value="Deblur"
+          value="deblur"
           label="Deblurring"
           control={<StyledRadio />}
         />
         <FormControlLabel
-          value="SuperResolution"
+          value="super-resolution"
           label="Image Upscaling"
           control={<StyledRadio />}
         />
         <FormControlLabel
-          value="Classify"
+          value="classify"
           label="Image Classification"
           control={<StyledRadio />}
         />
         <FormControlLabel
-          value="RemoveBG"
+          value="remove-bg"
           label="Background Removal"
           control={<StyledRadio />}
         />

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Profile = ({ user }) => {
+const Profile = ({ user, profile }) => {
   const classes = useStyles();
 
   if (user === null) {
@@ -56,7 +56,7 @@ const Profile = ({ user }) => {
             margin: "3rem 0rem 3rem 0rem",
           }}
         >
-          <NavTabs />
+          <NavTabs user={user} profile={profile} />
         </div>
       </div>
     </div>
@@ -66,6 +66,7 @@ const Profile = ({ user }) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    profile: state.profile,
   };
 };
 

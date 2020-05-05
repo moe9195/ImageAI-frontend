@@ -7,12 +7,21 @@ const instance = axios.create({
 
 export const postImage = (imageUrl, method, style) => async (dispatch) => {
   try {
-    if (method === "DeepArt") {
-      var obj = { img: imageUrl, method: method, style: style };
+    if (method === "deep-art") {
+      var obj = {
+        img: imageUrl,
+        "ImageAI-api-key": "KMKJiUH3.CtOFKE58mNymOgYpzDHxrX23TQIEZFz2",
+        style: style,
+        format: "JPEG",
+      };
     } else {
-      var obj = { img: imageUrl, method: method };
+      var obj = {
+        img: imageUrl,
+        "ImageAI-api-key": "KMKJiUH3.CtOFKE58mNymOgYpzDHxrX23TQIEZFz2",
+        format: "JPEG",
+      };
     }
-    const res = await instance.post("/post/", obj);
+    const res = await instance.post(`/${method}/`, obj);
     const returnedImage = res.data;
     dispatch({
       type: POST_IMAGE,
