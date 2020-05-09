@@ -64,7 +64,8 @@ const Credits = ({ profile }) => {
       </Grid>
       <Grid item xs={4}>
         <div>
-          <div className={classes.creditsCounter}>{profile.limit}</div> of
+          <div className={classes.creditsCounter}>{profile.profile.limit}</div>{" "}
+          of
           <div className={classes.creditsCounter}> 60</div>
         </div>
         <div className={classes.creditsTitle}>Free Requests via API</div>

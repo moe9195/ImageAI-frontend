@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Key from "./Key";
 import Credits from "./Credits";
+import Settings from "./Settings";
+import Payment from "./Payment";
 
 import { Tabs, Tab, Box, Typography, Paper } from "@material-ui/core";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
@@ -72,7 +74,7 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-const NavTabs = ({ user, profile }) => {
+const NavTabs = ({ profile }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -121,13 +123,13 @@ const NavTabs = ({ user, profile }) => {
         <Credits profile={profile} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        COMING SOON!
+        <Settings />
       </TabPanel>
       <TabPanel value={value} index={2}>
         <Key profile={profile} />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        COMING SOON!
+        <Payment />
       </TabPanel>
     </Paper>
   );

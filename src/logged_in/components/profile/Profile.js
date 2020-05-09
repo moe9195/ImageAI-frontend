@@ -26,17 +26,17 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Profile = ({ user, profile }) => {
+const Profile = ({ profile }) => {
   const classes = useStyles();
 
-  if (user === null) {
+  if (profile === null) {
     return <Redirect to="/" />;
   }
   return (
     <div className="container-fluid lg-p-top" style={{ textAlign: "center" }}>
       <div className={classes.main}>
         <Typography className={classes.title}>My Account</Typography>
-        <Typography className={classes.email}>{user.email}</Typography>
+        <Typography className={classes.email}>{profile.email}</Typography>
         <div
           style={{
             display: "flex",
@@ -44,7 +44,7 @@ const Profile = ({ user, profile }) => {
             margin: "3rem 0rem 3rem 0rem",
           }}
         >
-          <NavTabs user={user} profile={profile} />
+          <NavTabs profile={profile} />
         </div>
       </div>
     </div>
@@ -53,7 +53,6 @@ const Profile = ({ user, profile }) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
     profile: state.profile,
   };
 };

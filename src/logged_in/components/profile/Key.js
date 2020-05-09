@@ -19,8 +19,6 @@ const Key = ({ profile }) => {
     event.preventDefault();
   };
 
-  console.log(profile.key);
-
   return (
     <div style={{ padding: "0rem 6rem 0rem 6rem" }}>
       <Alert
@@ -39,7 +37,7 @@ const Key = ({ profile }) => {
         disabled
         fullWidth
         style={{ color: "rgb(4, 10, 19)", borderColor: "rgb(4, 10, 19" }}
-        value={profile.key}
+        value={profile.profile.key}
         labelWidth={60}
         endAdornment={
           <InputAdornment position="end">
@@ -49,7 +47,10 @@ const Key = ({ profile }) => {
             >
               {showKey ? <Visibility /> : <VisibilityOff />}
             </IconButton>
-            <CopyToClipboard text={profile.key} onCopy={() => setCopied(true)}>
+            <CopyToClipboard
+              text={profile.profile.key}
+              onCopy={() => setCopied(true)}
+            >
               <Tooltip
                 open={copied}
                 title={"Copied to clipboard!"}
