@@ -72,6 +72,13 @@ const imageGalleryDB = [
   "https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/images/db/street.png",
 ];
 
+const imageGalleryCL = [
+  "https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/images/cl/cat.jpg",
+  "https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/images/cl/chicken.jpg",
+  "https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/images/cl/dog.jpg",
+  "https://raw.githubusercontent.com/moe9195/Capstone-Backend-Fresh/master/images/cl/fruits.jpeg",
+];
+
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.secondary.main,
@@ -346,7 +353,7 @@ class ImageUploadCard extends React.Component {
         ? imageGalleryDA
         : method === "deblur"
         ? imageGalleryDB
-        : imageGallerySR;
+        : imageGalleryCL;
     const listItems = imageGallery.map((url) => (
       <div
         onClick={(value) => this.handleAvatarClick({ url })}
