@@ -6,17 +6,17 @@ import {
   Button,
   Typography,
   Box,
-  withStyles
+  withStyles,
 } from "@material-ui/core";
 import fetchIpData from "./fetchIpData";
 
-const styles = theme => ({
+const styles = (theme) => ({
   snackbarContent: {
     borderBotttomLeftRadius: 0,
     borderBottomRightRadius: 0,
     paddingLeft: theme.spacing(3),
-    paddingRight: theme.spacing(3)
-  }
+    paddingRight: theme.spacing(3),
+  },
 });
 
 /**
@@ -25,7 +25,7 @@ const styles = theme => ({
  */
 class CookieConsent extends PureComponent {
   state = {
-    visible: false
+    visible: false,
   };
 
   europeanCountryCodes = [
@@ -56,7 +56,7 @@ class CookieConsent extends PureComponent {
     "RO",
     "SE",
     "SI",
-    "SK"
+    "SK",
   ];
 
   componentDidMount() {
@@ -67,7 +67,7 @@ class CookieConsent extends PureComponent {
 
   openOnEuCountry = () => {
     fetchIpData
-      .then(data => {
+      .then((data) => {
         if (
           data &&
           data.country &&
@@ -88,7 +88,7 @@ class CookieConsent extends PureComponent {
    */
   onAccept = () => {
     Cookies.set("remember-cookie-snackbar", "", {
-      expires: 365
+      expires: 365,
     });
     this.setState({ visible: false });
   };
@@ -100,7 +100,7 @@ class CookieConsent extends PureComponent {
         className={classes.snackbarContent}
         open={this.state.visible}
         message={
-          <Typography className="text-white">
+          <Typography style={{ color: "black" }}>
             We use cookies to ensure you get the best experience on our website.{" "}
           </Typography>
         }
@@ -122,7 +122,7 @@ class CookieConsent extends PureComponent {
 }
 
 CookieConsent.propTypes = {
-  handleCookieRulesDialogOpen: PropTypes.func.isRequired
+  handleCookieRulesDialogOpen: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(CookieConsent);

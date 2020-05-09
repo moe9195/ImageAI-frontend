@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import ReactCompareImage from "react-compare-image";
-import { SuperResolutionBefore, SuperResolutionAfter } from "./ImageData";
+import React from "react";
 
 const BackGroundRemoval = () => {
   return (
-    <ReactCompareImage
-      leftImageCss={{ width: "350px" }}
-      rightImageCss={{ width: "350px" }}
-      leftImage={SuperResolutionBefore}
-      rightImage={"data:image/jpeg;base64, " + SuperResolutionAfter}
-    />
+    <div
+      style={{
+        fontSize: "4rem",
+        color: "white",
+        paddingTop: "10rem",
+        textAlign: "center",
+      }}
+    >
+      FEATURE NOT IMPLEMENTED YET
+    </div>
   );
 };
 

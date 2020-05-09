@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import compose from "recompose/compose";
 import { setImage, setReturnedImage } from "../../../redux/actions";
@@ -12,7 +12,6 @@ import {
   Hidden,
   Box,
   withStyles,
-  withWidth,
   isWidthUp,
 } from "@material-ui/core";
 import WaveBorder from "../../../shared/components/WaveBorder";
@@ -162,17 +161,17 @@ const HeadSection = (props) => {
                           className={classes.extraLargeButton}
                           classes={{ label: classes.extraLargeButtonLabel }}
                         >
-                          Click to upload an image
+                          Try me out!
                         </Button>
                       </div>
                     </Box>
                   </Grid>
                   <Hidden smDown>
                     <img
-                      src="https://raw.githubusercontent.com/moe9195/Capstone-React/master/public/deeplearning.png"
-                      style={{ width: "400px", height: "400px" }}
+                      src="https://raw.githubusercontent.com/moe9195/Capstone-React/master/public/imageai-logo.png"
+                      style={{ width: "300px", height: "300px" }}
                       alt="header example"
-                    />
+                    />{" "}
                   </Hidden>
                 </Box>
               </div>

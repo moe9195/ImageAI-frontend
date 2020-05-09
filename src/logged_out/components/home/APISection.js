@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {
@@ -6,7 +7,6 @@ import {
   Typography,
   Card,
   Button,
-  Hidden,
   Box,
   withStyles,
   withWidth,
@@ -93,7 +93,7 @@ const styles = (theme) => ({
 });
 
 const APISection = (props) => {
-  const { classes, theme, width } = props;
+  const { classes, width } = props;
   return (
     <Fragment>
       <div className={classNames("lg-p-top", classes.wrapper)}>
@@ -131,16 +131,18 @@ const APISection = (props) => {
                             editing automation
                           </Typography>
                         </Box>
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          style={{ background: "#00E9F1", color: "#0E141D" }}
-                          fullWidth
-                          className={classes.extraLargeButton}
-                          classes={{ label: classes.extraLargeButtonLabel }}
-                        >
-                          Learn more
-                        </Button>
+                        <Link to="/api">
+                          <Button
+                            variant="contained"
+                            color="secondary"
+                            style={{ background: "#00E9F1", color: "#0E141D" }}
+                            fullWidth
+                            className={classes.extraLargeButton}
+                            classes={{ label: classes.extraLargeButtonLabel }}
+                          >
+                            Learn more
+                          </Button>
+                        </Link>
                       </div>
                     </Box>
                   </Grid>

@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import compose from "recompose/compose";
 import PropTypes from "prop-types";
@@ -25,7 +25,6 @@ import HomeIcon from "@material-ui/icons/Home";
 import HowToRegIcon from "@material-ui/icons/HowToReg";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 
 const styles = (theme) => ({
@@ -60,7 +59,6 @@ const styles = (theme) => ({
     justifyContent: "center",
   },
   paper: {
-    padding: 0,
     margin: 0,
     width: "400px",
     border: "2px solid #000",
@@ -111,14 +109,14 @@ const NavBar = (props) => {
         ]
       : [
           {
-            name: "Logout",
-            onClick: () => logout(),
-            icon: <HowToRegIcon className="text-white" />,
-          },
-          {
             name: "profile",
             link: "/profile",
             icon: <AccountCircleIcon className="text-white" />,
+          },
+          {
+            name: "Logout",
+            onClick: () => logout(),
+            icon: <HowToRegIcon className="text-white" />,
           },
         ];
 
@@ -128,16 +126,16 @@ const NavBar = (props) => {
       name: "API",
       icon: <HomeIcon className="text-white" />,
     },
-    {
-      link: "/how-to-use",
-      name: "How to use",
-      icon: <BookIcon className="text-white" />,
-    },
-    {
-      link: "/technology",
-      name: "Technology",
-      icon: <HowToRegIcon className="text-white" />,
-    },
+    // {
+    //   link: "/how-to-use",
+    //   name: "How to use",
+    //   icon: <BookIcon className="text-white" />,
+    // },
+    // {
+    //   link: "/technology",
+    //   name: "Technology",
+    //   icon: <HowToRegIcon className="text-white" />,
+    // },
   ].concat(auth);
 
   return (
@@ -154,7 +152,9 @@ const NavBar = (props) => {
                 variant="h4"
                 className={classes.brandText}
                 display="inline"
-                style={{ color: "#00adb5" }}
+                style={{
+                  color: "#00adb5",
+                }}
               >
                 Image
               </Typography>
@@ -162,7 +162,9 @@ const NavBar = (props) => {
                 variant="h4"
                 className={classes.brandText}
                 display="inline"
-                style={{ color: "#FADA5E" }}
+                style={{
+                  color: "#FADA5E",
+                }}
               >
                 AI
               </Typography>

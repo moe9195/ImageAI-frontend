@@ -113,6 +113,7 @@ const Colorization = () => {
                   <a
                     target="_blank"
                     href="https://arxiv.org/pdf/1905.11946.pdf"
+                    rel="noopener noreferrer"
                   >
                     here
                   </a>
@@ -134,6 +135,7 @@ const Colorization = () => {
                     width: "90%",
                   }}
                   src={"data:image/jpeg;base64, " + Classification}
+                  alt="classification"
                 />
               </div>
             </Grid>

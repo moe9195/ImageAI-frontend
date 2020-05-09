@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import compose from "recompose/compose";
 import { setImage, postImage } from "../../../redux/actions";
-import Image from "react-graceful-image";
 
 //Card
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -131,9 +130,7 @@ class ImageUploadCard extends React.Component {
   };
 
   handleUploadClick = (event) => {
-    var file = event.target.files[0];
     const reader = new FileReader();
-    var url = reader.readAsDataURL(file);
 
     reader.onloadend = function (e) {
       this.setState({
@@ -162,8 +159,7 @@ class ImageUploadCard extends React.Component {
   };
 
   renderInitialState = (style, setStyle) => {
-    const { classes, theme, method } = this.props;
-    const { value } = this.state;
+    const { classes, method } = this.props;
 
     let artStyles = "";
     if (method === "deep-art") {
@@ -244,16 +240,13 @@ class ImageUploadCard extends React.Component {
   };
 
   handleSearchURL = (event) => {
-    var file = event.target.files[0];
     var reader = new FileReader();
-    var url = reader.readAsDataURL(file);
 
     reader.onloadend = function (e) {
       this.setState({
         selectedFile: [reader.result],
       });
     }.bind(this);
-    console.log(url);
 
     this.setState({
       selectedFile: event.target.files[0],
@@ -384,7 +377,6 @@ class ImageUploadCard extends React.Component {
   };
 
   renderUploadedState() {
-    const { classes, theme } = this.props;
     return (
       <React.Fragment>
         <CardActionArea onClick={this.imageResetHandler}></CardActionArea>
@@ -403,16 +395,16 @@ class ImageUploadCard extends React.Component {
   };
 
   render() {
-    const { classes, theme, style, setStyle } = this.props;
+    const { classes, style, setStyle } = this.props;
 
     return (
       <React.Fragment>
         <div className={classes.root}>
-          {(this.state.mainState == "initial" &&
+          {(this.state.mainState === "initial" &&
             this.renderInitialState(style, setStyle)) ||
-            (this.state.mainState == "search" && this.renderSearchState()) ||
-            (this.state.mainState == "gallery" && this.renderGalleryState()) ||
-            (this.state.mainState == "uploaded" && this.renderUploadedState())}
+            (this.state.mainState === "search" && this.renderSearchState()) ||
+            (this.state.mainState === "gallery" && this.renderGalleryState()) ||
+            (this.state.mainState === "uploaded" && this.renderUploadedState())}
         </div>
       </React.Fragment>
     );

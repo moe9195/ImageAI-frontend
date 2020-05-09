@@ -40,14 +40,14 @@ const UploadDialog = ({ open, handleClose, returnedImage, image }) => {
   if (returnedImage === null && image === null) {
     show = <></>;
   } else if (returnedImage === null && image !== null) {
-    show = <img style={{ width: "430px" }} src={image} />;
+    show = <img style={{ width: "430px" }} src={image} alt="img-before" />;
   } else {
     if (method === "classify") {
       show = (
         <div class="container overlay-container">
-          <img style={{ width: "430px" }} src={image} />
+          <img style={{ width: "430px" }} src={image} alt="img-classify" />
           <div class="overlay-text-block">
-            <pre class="prettyprint lang-js">
+            <pre class="prettyprint lang-js" style={{ fontSize: "14px" }}>
               {JSON.stringify(returnedImage, null, 4)}
             </pre>
           </div>

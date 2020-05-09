@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactCompareImage from "react-compare-image";
 import { DeepArtBefore, DeepArtAfter } from "./ImageData";
 import Typography from "@material-ui/core/Typography";
@@ -113,6 +113,7 @@ const DeepArt = () => {
                   <a
                     target="_blank"
                     href="https://arxiv.org/pdf/1508.06576.pdf"
+                    rel="noopener noreferrer"
                   >
                     here
                   </a>

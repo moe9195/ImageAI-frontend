@@ -1,21 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Key from "./Key";
-import Payment from "./Payment";
-import Settings from "./Settings";
 import Credits from "./Credits";
 
-import {
-  Tabs,
-  Tab,
-  Box,
-  Typography,
-  Grid,
-  Paper,
-  Button,
-  Popover,
-} from "@material-ui/core";
+import { Tabs, Tab, Box, Typography, Paper } from "@material-ui/core";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import SettingsIcon from "@material-ui/icons/Settings";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
@@ -26,7 +15,6 @@ const useStyles = makeStyles({
     flexGrow: 1,
     maxWidth: 768,
     color: "rgb(4, 10, 19)",
-    borderRadius: "0rem 0rem 0.5rem 0.5rem",
   },
   creditsCounter: {
     fontSize: "1.5rem",

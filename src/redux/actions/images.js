@@ -6,16 +6,17 @@ const instance = axios.create({
 });
 
 export const postImage = (imageUrl, method, style) => async (dispatch) => {
+  var obj = {};
   try {
     if (method === "deep-art") {
-      var obj = {
+      obj = {
         img: imageUrl,
         "ImageAI-api-key": "KMKJiUH3.CtOFKE58mNymOgYpzDHxrX23TQIEZFz2",
         style: style,
         format: "JPEG",
       };
     } else {
-      var obj = {
+      obj = {
         img: imageUrl,
         "ImageAI-api-key": "KMKJiUH3.CtOFKE58mNymOgYpzDHxrX23TQIEZFz2",
         format: "JPEG",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactCompareImage from "react-compare-image";
 import { DeblurBefore, DeblurAfter } from "./ImageData";
 import Typography from "@material-ui/core/Typography";
@@ -111,6 +111,7 @@ const Colorization = () => {
                   <a
                     target="_blank"
                     href="https://arxiv.org/pdf/1711.07064.pdf"
+                    rel="noopener noreferrer"
                   >
                     here
                   </a>

@@ -1,24 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Tabs,
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Hidden,
-  IconButton,
-  withStyles,
-  Modal,
-  Backdrop,
-  Fade,
-} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 import NavTabs from "./NavTabs";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   main: {
     textAlign: "center",
     marginBottom: "5rem",

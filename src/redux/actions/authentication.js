@@ -24,7 +24,7 @@ export const setCurrentUser = (token) => async (dispatch) => {
     const decodedToken = decode(token);
     const user_id = decodedToken.user_id;
     const res = await instance.get(`/user/${user_id}/detail/`);
-    const res2 = await instance.get(`/profile/${user_id}/detail/`);
+    const res2 = await instance.get(`/user/${user_id}/detail/`);
     profile = res2.data;
     user = res.data;
   }

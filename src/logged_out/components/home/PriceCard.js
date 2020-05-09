@@ -31,8 +31,7 @@ const styles = (theme) => ({
   },
 });
 
-const PriceCard = (props) => {
-  const { classes, theme, title, pricing, features, highlighted } = props;
+const PriceCard = ({ classes, title, pricing, features, highlighted }) => {
   return (
     <div
       className={highlighted ? classes.cardHightlighted : classes.card}
