@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.js": "/image-ai/static/js/main.57746101.chunk.js",
-    "main.js.map": "/image-ai/static/js/main.57746101.chunk.js.map",
-    "runtime-main.js": "/image-ai/static/js/runtime-main.59bf7926.js",
-    "runtime-main.js.map": "/image-ai/static/js/runtime-main.59bf7926.js.map",
-    "static/css/2.4707e12a.chunk.css": "/image-ai/static/css/2.4707e12a.chunk.css",
-    "static/js/2.cc12b167.chunk.js": "/image-ai/static/js/2.cc12b167.chunk.js",
-    "static/js/2.cc12b167.chunk.js.map": "/image-ai/static/js/2.cc12b167.chunk.js.map",
-    "static/js/3.2f3bdffb.chunk.js": "/image-ai/static/js/3.2f3bdffb.chunk.js",
-    "static/js/3.2f3bdffb.chunk.js.map": "/image-ai/static/js/3.2f3bdffb.chunk.js.map",
-    "static/js/4.af225522.chunk.js": "/image-ai/static/js/4.af225522.chunk.js",
-    "static/js/4.af225522.chunk.js.map": "/image-ai/static/js/4.af225522.chunk.js.map",
-    "index.html": "/image-ai/index.html",
-    "precache-manifest.7cabe7c7e47f083787a05cc7fa0f5b6d.js": "/image-ai/precache-manifest.7cabe7c7e47f083787a05cc7fa0f5b6d.js",
-    "service-worker.js": "/image-ai/service-worker.js",
-    "static/css/2.4707e12a.chunk.css.map": "/image-ai/static/css/2.4707e12a.chunk.css.map",
-    "static/js/2.cc12b167.chunk.js.LICENSE.txt": "/image-ai/static/js/2.cc12b167.chunk.js.LICENSE.txt",
-    "static/js/3.2f3bdffb.chunk.js.LICENSE.txt": "/image-ai/static/js/3.2f3bdffb.chunk.js.LICENSE.txt",
-    "static/js/main.57746101.chunk.js.LICENSE.txt": "/image-ai/static/js/main.57746101.chunk.js.LICENSE.txt"
+    "main.js": "/ImageAI-frontend/static/js/main.baee06d6.chunk.js",
+    "main.js.map": "/ImageAI-frontend/static/js/main.baee06d6.chunk.js.map",
+    "runtime-main.js": "/ImageAI-frontend/static/js/runtime-main.e6f37ba4.js",
+    "runtime-main.js.map": "/ImageAI-frontend/static/js/runtime-main.e6f37ba4.js.map",
+    "static/css/2.4707e12a.chunk.css": "/ImageAI-frontend/static/css/2.4707e12a.chunk.css",
+    "static/js/2.cc12b167.chunk.js": "/ImageAI-frontend/static/js/2.cc12b167.chunk.js",
+    "static/js/2.cc12b167.chunk.js.map": "/ImageAI-frontend/static/js/2.cc12b167.chunk.js.map",
+    "static/js/3.2f3bdffb.chunk.js": "/ImageAI-frontend/static/js/3.2f3bdffb.chunk.js",
+    "static/js/3.2f3bdffb.chunk.js.map": "/ImageAI-frontend/static/js/3.2f3bdffb.chunk.js.map",
+    "static/js/4.af225522.chunk.js": "/ImageAI-frontend/static/js/4.af225522.chunk.js",
+    "static/js/4.af225522.chunk.js.map": "/ImageAI-frontend/static/js/4.af225522.chunk.js.map",
+    "index.html": "/ImageAI-frontend/index.html",
+    "precache-manifest.8b7c42aae878b2cdaaae5e20c2c42ee7.js": "/ImageAI-frontend/precache-manifest.8b7c42aae878b2cdaaae5e20c2c42ee7.js",
+    "service-worker.js": "/ImageAI-frontend/service-worker.js",
+    "static/css/2.4707e12a.chunk.css.map": "/ImageAI-frontend/static/css/2.4707e12a.chunk.css.map",
+    "static/js/2.cc12b167.chunk.js.LICENSE.txt": "/ImageAI-frontend/static/js/2.cc12b167.chunk.js.LICENSE.txt",
+    "static/js/3.2f3bdffb.chunk.js.LICENSE.txt": "/ImageAI-frontend/static/js/3.2f3bdffb.chunk.js.LICENSE.txt",
+    "static/js/main.baee06d6.chunk.js.LICENSE.txt": "/ImageAI-frontend/static/js/main.baee06d6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.59bf7926.js",
+    "static/js/runtime-main.e6f37ba4.js",
     "static/js/3.2f3bdffb.chunk.js",
-    "static/js/main.57746101.chunk.js"
+    "static/js/main.baee06d6.chunk.js"
   ]
 }
