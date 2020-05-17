@@ -13,8 +13,10 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
+import Alert from "@material-ui/lab/Alert";
 
 const Signup = ({ signup, history, user, errors }) => {
+  const [alert, setAlert] = React.useState(false);
   const [values, setValues] = useState({
     username: "",
     email: "",
@@ -26,16 +28,19 @@ const Signup = ({ signup, history, user, errors }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signup(
-      {
-        username: values.username,
-        password: values.password,
-        first_name: values.firstName,
-        last_name: values.lastName,
-        email: values.email,
-      },
-      history
-    );
+    // signup(
+    //   {
+    //     username: values.username,
+    //     password: values.password,
+    //     first_name: values.firstName,
+    //     last_name: values.lastName,
+    //     email: values.email,
+    //   },
+    //   history
+    // );
+    setTimeout(() => {
+      setAlert(true);
+    }, 500);
   };
 
   const handleChange = (prop) => (event) => {
@@ -57,6 +62,11 @@ const Signup = ({ signup, history, user, errors }) => {
       ) : (
         <form onSubmit={handleSubmit}>
           <Grid container spacing={3}>
+            {alert && (
+              <Alert severity="error">
+                The back-end is not deployed! This feature is unavailable!
+              </Alert>
+            )}
             <Grid item xs={6} style={{ paddingTop: "2rem" }}>
               <FormControl>
                 <TextField

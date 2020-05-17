@@ -13,8 +13,10 @@ import Grid from "@material-ui/core/Grid";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import Button from "@material-ui/core/Button";
+import Alert from "@material-ui/lab/Alert";
 
 const LoginDialog = ({ login, history, user }) => {
+  const [alert, setAlert] = React.useState(false);
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -23,7 +25,10 @@ const LoginDialog = ({ login, history, user }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login({ username: values.username, password: values.password }, history);
+    //login({ username: values.username, password: values.password }, history);
+    setTimeout(() => {
+      setAlert(true);
+    }, 500);
   };
 
   const handleChange = (prop) => (event) => {
@@ -44,6 +49,11 @@ const LoginDialog = ({ login, history, user }) => {
         <Redirect to="/profile" />
       ) : (
         <Grid container spacing={3}>
+          {alert && (
+            <Alert severity="error">
+              The back-end is not deployed! This feature is unavailable!
+            </Alert>
+          )}
           <Grid item xs={12} style={{ paddingTop: "2rem" }}>
             <FormControl fullWidth>
               <TextField

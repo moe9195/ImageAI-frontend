@@ -6,6 +6,7 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import StepContent from "@material-ui/core/StepContent";
+import Alert from "@material-ui/lab/Alert";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
@@ -62,6 +63,8 @@ const VerticalStepper = ({
   const classes = useStyles();
   const [style, setStyle] = React.useState("wave");
   const [activeStep, setActiveStep] = React.useState(0);
+  const [alert, setAlert] = React.useState(false);
+
   const steps = getSteps();
 
   const handleNext = () => {
@@ -69,8 +72,11 @@ const VerticalStepper = ({
   };
 
   const handlePost = (image, method, style) => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    postImage(image, method, style);
+    // setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // postImage(image, method, style);
+    setTimeout(() => {
+      setAlert(true);
+    }, 500);
   };
 
   const handleBack = () => {
@@ -84,6 +90,11 @@ const VerticalStepper = ({
 
   return (
     <div className={classes.root}>
+      {alert && (
+        <Alert severity="error">
+          The back-end is not deployed! This feature is unavailable!
+        </Alert>
+      )}
       <Stepper
         activeStep={activeStep}
         orientation="vertical"

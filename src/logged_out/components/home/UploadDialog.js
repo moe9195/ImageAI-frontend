@@ -83,6 +83,7 @@ const UploadDialog = ({ open, handleClose, returnedImage, image }) => {
             <p id="transition-modal-description">
               <VerticalStepper
                 method={method}
+                handleClose={handleClose}
                 handleMethodChange={handleMethodChange}
               />
             </p>
